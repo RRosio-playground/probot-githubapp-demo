@@ -10,9 +10,12 @@ export = (app: Probot) => {
     });
     await context.octokit.issues.createComment(issueComment);
   });
-  // For more information on building apps:
-  // https://probot.github.io/docs/
 
-  // To get your app running against GitHub, see:
-  // https://probot.github.io/docs/development/
+  app.on("issues.labeled", async (context) => {
+    const issueComment = context.issue({
+      body: "This issue was labeled!",
+    });
+    await context.octokit.issues.createComment(issueComment);
+  });
+
 };
